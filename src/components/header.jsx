@@ -16,7 +16,7 @@ const Header = ({handleSearch}) => {
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={e => updateSearch(e.target.value)} />
                         <button className="btn btn-outline-success" type="submit" onClick={() => handleSearch(search)}>Search</button>
                     </div>
-                    <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {/* <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <a className="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
@@ -26,7 +26,7 @@ const Header = ({handleSearch}) => {
                         <li className="nav-item">
                             <a className="nav-link disabled" aria-disabled="true">Disabled</a>
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>
             </div>
         </nav>
