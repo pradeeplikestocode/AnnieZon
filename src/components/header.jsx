@@ -1,8 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Header = ({handleSearch}) => {
+const Header = ({handleSearch, defaultSearch}) => {
 
-    const [search, updateSearch] = useState("");
+    const nav = useNavigate();
+
+    const [search, updateSearch] = useState(defaultSearch || "");
+
+    const internalHandleSearch = (searchText) => {
+        if(!handleSearch) {
+            nav(`/home?q=${searchText}`)
+        } else {
+            handleSearch(searchText);
+        }
+    }
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -11,10 +22,10 @@ const Header = ({handleSearch}) => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <a className="navbar-brand" href="#">Anniezon</a>
+                    <span role="button"     className="navbar-brand" onClick={() => nav("/")}>Anniezon</span>
                     <div className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={e => updateSearch(e.target.value)} />
-                        <button className="btn btn-outline-success" type="submit" onClick={() => handleSearch(search)}>Search</button>
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={search} onChange={e => updateSearch(e.target.value)} />
+                        <button className="btn btn-outline-success" type="submit" onClick={() => internalHandleSearch(search)}>Search</button>
                     </div>
                     {/* <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li className="nav-item">
